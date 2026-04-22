@@ -1,0 +1,49 @@
+DATA PREPROCESSING SUMMARY — H-1B Visa Petitions (2011-2016)
+============================================================
+
+ORIGINAL DATASET
+  Total records (raw)       : ~3,000,000
+
+CLEANING STEPS & RECORDS REMOVED
+  Invalid CASE_STATUS       : mapped to 3 classes (CERTIFIED, DENIED, WITHDRAWN)
+  Missing WORKSITE/LAT/LON  : dropped
+  Non-positive wages        : dropped
+  Wage IQR outliers         : [14,280 - 121,856] — records outside range dropped
+  Invalid YEAR              : kept only 2011-2016
+
+FINAL DATASET
+  Records retained          : 2,785,695
+  Attributes                : 13
+
+CASE_STATUS DISTRIBUTION (after cleaning)
+  CERTIFIED                : 2,435,048  (87.4%)
+  WITHDRAWN                :  271,193  (9.7%)
+  DENIED                   :   79,454  (2.9%)
+
+PREVAILING_WAGE STATISTICS (after outlier removal)
+  Min    : $   14,580.80
+  Q1     : $   54,163.00
+  Median : $   64,106.00
+  Mean   : $   67,377.23
+  Q3     : $   78,811.20
+  Max    : $  121,846.40
+
+YEAR DISTRIBUTION
+  2011: 329,498
+  2012: 384,903
+  2013: 411,907
+  2014: 483,082
+  2015: 576,319
+  2016: 599,986
+
+OUTPUT FILES
+  clean_full.csv    : 2,785,695 rows x 27 cols — for Classification & Clustering
+  clean_apriori.csv : 2,785,695 rows x 40 cols — for Apriori
+
+ENCODING SUMMARY
+  CASE_STATUS_ENC   : LabelEncoder → {'CERTIFIED': np.int64(0), 'DENIED': np.int64(1), 'WITHDRAWN': np.int64(2)}
+  SOC_NAME_GROUPED  : Top 20 occupations + OTHER → one-hot encoded
+  FULL_TIME_POSITION: Y/N → 1/0
+  STATE             : Extracted from WORKSITE
+  WAGE_BUCKET       : pd.qcut 3-bin (LOW / MEDIUM / HIGH) — Apriori only
+  Numeric scaling   : MinMaxScaler on PREVAILING_WAGE, LATITUDE, LONGITUDE, YEAR
