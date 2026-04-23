@@ -1,0 +1,80 @@
+CLASSIFICATION RESULTS — H-1B Visa Petitions (2011-2016)
+============================================================
+
+Dataset size (full)       : 2,785,695 records
+Sample size (DT/RF)       : 300,000
+Sample size (KNN)         : 60,000
+Train/Test split          : 80/20 (stratified)
+CV                        : 5-fold stratified
+
+CLASS DISTRIBUTION (full dataset)
+  CERTIFIED   :  2,435,048  (87.4%)
+  DENIED      :     79,454  (2.9%)
+  WITHDRAWN   :    271,193  (9.7%)
+
+IMBALANCE STRATEGY
+  Decision Tree  : class_weight='balanced'
+  Random Forest  : class_weight='balanced'
+  KNN            : random undersampling to minority class size
+
+MODEL COMPARISON
+  Model                  Accuracy  Precision     Recall         F1           CV F1
+  ---------------------------------------------------------------------------
+  Decision Tree            0.5137     0.8011     0.5137     0.6048   0.6068±0.0214
+  Random Forest            0.6420     0.8104     0.6420     0.7060   0.7544±0.0033
+  KNN                      0.4323     0.7943     0.4323     0.5342   0.4458±0.0154
+
+Best model (weighted F1)  : Random Forest
+
+============================================================
+DECISION TREE — Full Classification Report
+============================================================
+              precision    recall  f1-score   support
+
+   CERTIFIED       0.90      0.53      0.67     52448
+      DENIED       0.07      0.45      0.11      1711
+   WITHDRAWN       0.13      0.40      0.20      5841
+
+    accuracy                           0.51     60000
+   macro avg       0.37      0.46      0.33     60000
+weighted avg       0.80      0.51      0.60     60000
+
+============================================================
+RANDOM FOREST — Full Classification Report
+============================================================
+              precision    recall  f1-score   support
+
+   CERTIFIED       0.90      0.68      0.78     52448
+      DENIED       0.09      0.43      0.14      1711
+   WITHDRAWN       0.17      0.36      0.23      5841
+
+    accuracy                           0.64     60000
+   macro avg       0.39      0.49      0.38     60000
+weighted avg       0.81      0.64      0.71     60000
+
+============================================================
+KNN — Full Classification Report
+============================================================
+              precision    recall  f1-score   support
+
+   CERTIFIED       0.89      0.44      0.59     10490
+      DENIED       0.05      0.51      0.10       342
+   WITHDRAWN       0.11      0.35      0.17      1168
+
+    accuracy                           0.43     12000
+   macro avg       0.35      0.43      0.28     12000
+weighted avg       0.79      0.43      0.53     12000
+
+
+RANDOM FOREST — Top 10 Feature Importances
+============================================================
+  PREVAILING_WAGE                                    0.251377
+  YEAR                                               0.213228
+  LATITUDE                                           0.184904
+  LONGITUDE                                          0.180911
+  SOC_OTHER                                          0.061079
+  FULL_TIME_POSITION                                 0.017904
+  SOC_COMPUTER SYSTEMS ANALYSTS                      0.017717
+  SOC_COMPUTER PROGRAMMERS                           0.010844
+  SOC_COMPUTER SOFTWARE ENGINEERS, APPLICATIONS      0.010113
+  SOC_ACCOUNTANTS AND AUDITORS                       0.008160

@@ -4,3 +4,5 @@
 # Data directories
 data/
 clean_data/
+clean_apriori.csv
+clean_full.csv
