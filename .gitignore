@@ -4,3 +4,9 @@
 # Data directories
 data/
 clean_data/
+
+# Large generated CSV files
+*.csv
+
+# Generated results
+association_results/
