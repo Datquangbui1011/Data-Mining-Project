@@ -6,3 +6,9 @@ data/
 clean_data/
 clean_apriori.csv
 clean_full.csv
+
+# Large generated CSV files
+*.csv
+
+# Generated results
+association_results/
