@@ -4,6 +4,12 @@
 # Data directories
 data/
 clean_data/
+
+# Large CSV files (exceed GitHub 100MB limit)
+clean_full.csv
+clean_apriori.csv
+kmeans_results.csv
+outlier_results.csv
 clean_apriori.csv
 clean_full.csv
 

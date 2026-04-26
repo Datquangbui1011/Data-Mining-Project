@@ -1,0 +1,13 @@
+name: datamining474
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - pip:
+      - mlxtend          # for Apriori (association rule mining)

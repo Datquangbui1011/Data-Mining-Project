@@ -1,0 +1,61 @@
+CLUSTERING & OUTLIER DETECTION SUMMARY — H-1B (2011-2016)
+============================================================
+
+DATASET
+  Records used           : 2,785,695
+  Features               : 26
+  PCA components (5)     : 69.3% variance explained
+
+K-MEANS CLUSTERING
+  k range tested         : [2, 3, 4, 5, 6, 7, 8, 9, 10]
+  Best k (silhouette)    : 10
+  Silhouette scores      : [np.float64(0.3398), np.float64(0.442), np.float64(0.5278), np.float64(0.5847), np.float64(0.6234), np.float64(0.652), np.float64(0.6584), np.float64(0.6808), np.float64(0.704)]
+
+  Cluster Sizes:
+    Cluster 0:    145,646  (5.2%)
+    Cluster 1:    533,427  (19.1%)
+    Cluster 2:    587,910  (21.1%)
+    Cluster 3:    391,784  (14.1%)
+    Cluster 4:    439,337  (15.8%)
+    Cluster 5:    128,714  (4.6%)
+    Cluster 6:    327,461  (11.8%)
+    Cluster 7:     64,156  (2.3%)
+    Cluster 8:    109,175  (3.9%)
+    Cluster 9:     58,085  (2.1%)
+
+  Cluster Mean Profiles (key features):
+         PREVAILING_WAGE  FULL_TIME_POSITION    YEAR  LATITUDE  LONGITUDE  CASE_STATUS_ENC
+CLUSTER                                                                                   
+0                 0.5200              1.0000  0.6984    0.4894     0.2105           0.1481
+1                 0.5241              0.9948  0.4672    0.4798     0.2147           0.2431
+2                 0.4627              0.9993  0.4365    0.4751     0.2190           0.2798
+3                 0.6116              0.8945  0.6738    0.4885     0.2065           0.2206
+4                 0.5083              0.9992  0.5296    0.4822     0.2171           0.1526
+5                 0.3621              0.0000  0.7962    0.4732     0.2235           0.2696
+6                 0.4322              0.9987  0.5012    0.4847     0.2266           0.1993
+7                 0.3989              0.0000  0.9864    0.4749     0.2294           0.2298
+8                 0.3896              0.0000  0.9282    0.4802     0.2236           0.2361
+9                 0.4237              0.0000  0.9846    0.4710     0.2242           0.2093
+
+DBSCAN GEOGRAPHIC CLUSTERING
+  eps=0.03, min_samples=50, sample=30,000
+  Clusters found         : 2
+  Noise points           : 108  (0.4%)
+
+OUTLIER DETECTION
+  Isolation Forest (full dataset):
+    contamination=0.02
+    Outliers flagged       : 55,714  (2.00%)
+
+  Local Outlier Factor (sample=100,000):
+    contamination=0.02, n_neighbors=20
+    Outliers in sample     : 2,000  (2.00%)
+
+OUTPUT FILES
+  kmeans_results.csv     : data + CLUSTER label
+  outlier_results.csv    : data + IF_SCORE + LOF_SCORE
+  plots/elbow_silhouette.png
+  plots/kmeans_clusters_pca.png
+  plots/dbscan_geo.png
+  plots/outlier_iforest.png
+  plots/outlier_lof.png
