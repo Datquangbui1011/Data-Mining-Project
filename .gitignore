@@ -10,3 +10,11 @@ clean_full.csv
 clean_apriori.csv
 kmeans_results.csv
 outlier_results.csv
+clean_apriori.csv
+clean_full.csv
+
+# Large generated CSV files
+*.csv
+
+# Generated results
+association_results/
